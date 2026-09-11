@@ -1,0 +1,58 @@
+{
+  "name": "@distribate/reatom-kit",
+  "version": "0.1.0",
+  "description": "Utilities, helpers and extensions for Reatom v3",
+  "type": "module",
+  "author": "distribate",
+  "license": "MIT",
+  "keywords": [
+    "reatom",
+    "reatom-v3",
+    "state-management",
+    "state-manager"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/distribate/reatom-kit.git"
+  },
+  "homepage": "https://github.com/distribate/reatom-kit",
+  "bugs": {
+    "url": "https://github.com/distribate/reatom-kit/issues"
+  },
+  "packageManager": "pnpm@11.4.0",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./extensions": {
+      "types": "./dist/extensions/index.d.ts",
+      "import": "./dist/extensions/index.js"
+    },
+    "./helpers": {
+      "types": "./dist/helpers/index.d.ts",
+      "import": "./dist/helpers/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "peerDependencies": {
+    "@reatom/core": "^3.10.3"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.7.3",
+    "vitest": "^5.0.0"
+  }
+}
