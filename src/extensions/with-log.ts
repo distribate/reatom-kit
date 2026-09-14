@@ -1,19 +1,26 @@
 import { type Action, type Atom } from "@reatom/core"
 import { config } from '../config'
 
+/**
+ * Logs atom changes to the console.
+ * Note: may be configured via `logging.atoms` in the config.
+ */
 export function withAtomLog<T extends Atom<any>>() {
-  return (atom: T): T => {
-    if (!config.logging.console) return atom;
+  return (target: T): T => {
+    if (!config.logging.atoms) return target;
 
-    atom.onChange((_, s) => {
-      const name = atom.__reatom.name || 'unnamed'
-      console.log(`${name}:`, s)
+    target.onChange((_, state) => {
+      console.log(`${target.__reatom.name}:`, state)
     })
 
-    return atom
+    return target
   }
 }
 
+/**
+ * Logs action calls to the console.
+ * Note: may be configured via `logging.actions` in the config.
+ */
 export function withActionLog<T extends Action>({
   withParams = true, withCause = false
 } = {}): (target: T) => T {
@@ -21,7 +28,7 @@ export function withActionLog<T extends Action>({
     if (!config.logging.actions) return target;
 
     target.onCall((ctx, __, params) => {
-      const name = target.__reatom.name || 'anonymous action';
+      const name = target.__reatom.name || 'anonymous_action';
 
       const result: {
         cause: typeof ctx.cause | null,

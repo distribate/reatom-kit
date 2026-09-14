@@ -22,10 +22,12 @@
   "packageManager": "pnpm@11.4.0",
   "scripts": {
     "build": "tsup",
+    "validate": "pnpm test && pnpm typecheck && pnpm build",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "prepare": "husky"
   },
   "sideEffects": false,
   "files": [
@@ -35,6 +37,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./setup": {
+      "types": "./dist/setup/index.d.ts",
+      "import": "./dist/setup/index.js"
     },
     "./extensions": {
       "types": "./dist/extensions/index.d.ts",
@@ -48,9 +54,23 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "peerDependencies": {
-    "@reatom/core": "^3.10.3"
+    "@reatom/async": "^3.16.10",
+    "@reatom/core": "^3.10.3",
+    "@reatom/effects": "^3.11.3",
+    "@tanstack/react-router": "^1.170.35"
+  },
+  "peerDependenciesMeta": {
+    "@reatom/effects": {
+      "optional": true
+    },
+    "@tanstack/react-router": {
+      "optional": true
+    }
   },
   "devDependencies": {
+    "@changesets/cli": "^3.0.2",
+    "@tanstack/react-router": "^1.170.35",
+    "husky": "^9.1.7",
     "tsup": "^8.5.1",
     "typescript": "^5.7.3",
     "vitest": "^5.0.0"

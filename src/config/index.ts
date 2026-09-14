@@ -1,2 +1,1 @@
-export { config, configure } from './setup'
-export type { ReatomKitConfig } from './setup'
+export { config, configure, type ReatomKitConfig } from './setup'
