@@ -1,6 +1,6 @@
 {
   "name": "@distribate/reatom-kit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Utilities, helpers and extensions for Reatom v3",
   "type": "module",
   "author": "distribate",
